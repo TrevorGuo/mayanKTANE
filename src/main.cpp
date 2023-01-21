@@ -1,21 +1,37 @@
-//#include <Arduino.h>
-#include <stdio.h>
-#include <iostream>
-using namespace std;
+/*
+ * This example shows how to read from a seesaw encoder module.
+ * The available encoder API is:
+ *      int32_t getEncoderPosition();
+        int32_t getEncoderDelta();
+        void enableEncoderInterrupt();
+        void disableEncoderInterrupt();
+        void setEncoderPosition(int32_t pos);
+ */
+#include "Encoder.hpp"
 
-#define CODE_LENGTH 4
+int pressed_pos = 0;
 
-void setup() {
-  // put your setup code here, to run once:
-  int vals[CODE_LENGTH];
-  for (int i = 0; i < CODE_LENGTH; i++) {
-    vals[i] = i;
-  }
-  for (int i = 0; i < CODE_LENGTH; i++) {
-    cout << vals[i] << endl;
-  }
+void buttonPressed();
+
+Encoder encoder(4, &buttonPressed);
+
+void setup()
+{
+  delay(1000);
+  Serial.begin(115200);
+  Serial.println("Starting");
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void loop()
+{
+  Serial.println("Something");
+  // Serial.print(encoder.getPos());
+  // Serial.print(" : ");
+  // Serial.println(pressed_pos);
+  delay(10);
+}
+
+void buttonPressed()
+{
+  pressed_pos = encoder.getPos();
 }
