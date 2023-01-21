@@ -6,6 +6,6 @@ StateMachine::StateMachine() {
 }
 
 bool StateMachine::readInput(int action) {
-    m_curr = m_nextStates[action];
+    m_curr = m_curr->getNextNode(action);
     return m_curr->isAccepting();
 }

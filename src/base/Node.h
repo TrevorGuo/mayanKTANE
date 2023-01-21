@@ -3,10 +3,13 @@
 
 #include <unordered_map>
 
+using namespace std;
+
 class Node {
     public:
-        Node(bool accepting)
-        void addNextNode(int action, Node* n)
+        Node(bool accepting);
+        void addNextNode(int action, Node* n);
+        Node* getNextNode(int action);
         virtual void updateHardware();
         bool isAccepting();
     private:
