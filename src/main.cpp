@@ -1,21 +1,75 @@
-//#include <Arduino.h>
-#include <stdio.h>
-#include <iostream>
-using namespace std;
+#include <Arduino.h>
+#include <accel.h>
+#include <spear.h>
+#include <Servo.h>
+#define SUBMIT_BUTTON 5
 
-#define CODE_LENGTH 4
-
+// bool prev_button_state = false;
+// int state = 0;
+// Servo spear;
+// Adafruit_MPU6050 mpu;
+// accel accelerometer(&mpu);
 void setup() {
-  // put your setup code here, to run once:
-  int vals[CODE_LENGTH];
-  for (int i = 0; i < CODE_LENGTH; i++) {
-    vals[i] = i;
-  }
-  for (int i = 0; i < CODE_LENGTH; i++) {
-    cout << vals[i] << endl;
-  }
+   Serial.begin(115200);
+  //  accelerometer.init();
+
+  // pinMode(SUBMIT_BUTTON, INPUT);
+  // spear.attach(SERVO_PIN);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  // if (digitalRead(SUBMIT_BUTTON) && !prev_button_state) {
+  //   Serial.println("button pressed");
+  //   prev_button_state = true;
+  //   accelerometer.update();
+  //   if (state == 0) {
+  //     if (accelerometer.get_orientation() == SIDE_3) {
+  //       state = 1;
+  //     }
+  //     else {
+  //       state = 0;
+  //     }
+  //     Serial.print("new state: ");
+  //     Serial.println(state);
+  //   }
+  //   else if (state == 1) {
+  //     if (accelerometer.get_orientation() == SIDE_1) {
+  //       state = 2;
+  //     }
+  //     else {
+  //       state = 0;
+  //     }
+  //     Serial.print("new state: ");
+  //     Serial.println(state);
+  //   }
+  //   else if (state == 2) {
+  //     if (accelerometer.get_orientation() == SIDE_4) {
+  //       state = 3;
+  //       Serial.println("you win");
+  //     }
+  //     else {
+  //       state = 0;
+  //     }
+  //     Serial.print("new state: ");
+  //     Serial.println(state);
+  //   }
+  //   else if (state == 3) {
+  //     Serial.println("restarting");
+  //     state = 0;
+  //   }
+  // }
+  // if (!digitalRead(SUBMIT_BUTTON) && prev_button_state) {
+  //   Serial.println("button unpressed");
+  //   prev_button_state = false;
+  // }
+
+  // if (state == 1) {
+  //   spear.write(SERVO_POS_CENTER);
+  // }
+  // else if (state == 2) {
+  //   spear.write(SERVO_POS_LEFT);
+  // }
+  // else {
+  //   spear.write(SERVO_POS_RIGHT);
+  // }
 }
