@@ -4,3 +4,9 @@
 #define SERVO_POS_LEFT 180
 
 enum spearDirections {RIGHT, CENTER, LEFT};
+
+// need to initialize the spear in init like this
+// spear.attach(SERVO_PIN);
+
+// to control the spear, example
+// spear.write(SERVO_POS_RIGHT);
