@@ -2,38 +2,45 @@
 #include <stdio.h>
 #include <iostream>
 
-#include "modules/SymbolSequence.h"
+// #include "modules/SymbolSequence.h"
 #include "bomb.h"
 
 using namespace std;
 
 #define CODE_LENGTH 4
-#include <accel.h>
-#include <spear.h>
-#include <Servo.h>
-#define SUBMIT_BUTTON 5
+// #include <accel.h>
+// #include <spear.h>
+// #include <Servo.h>
+#include "Vault.h"
+#define pot 5
 
 // bool prev_button_state = false;
 // int state = 0;
 // Servo spear;
 // Adafruit_MPU6050 mpu;
 // accel accelerometer(&mpu);
-void setup() {
+
+vault Vault;
+void setup()
+{
   // put your setup code here, to run once:
   Serial.begin(115200);
   //  accelerometer.init();
 
-  Bomb b;
+  // Bomb b;
+  pinMode(POTPIN, OUTPUT);
+  // vault = Vault();
+  // Attach interrupts
 
-  //Attach interrupts
-
-  //Helper class for buttons 
+  // Helper class for buttons
 
   // pinMode(SUBMIT_BUTTON, INPUT);
   // spear.attach(SERVO_PIN);
 }
 
-void loop() {
+void loop()
+{
+  // vault.runVault();
   // if (digitalRead(SUBMIT_BUTTON) && !prev_button_state) {
   //   Serial.println("button pressed");
   //   prev_button_state = true;
