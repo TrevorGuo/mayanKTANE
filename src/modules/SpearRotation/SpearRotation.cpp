@@ -1,16 +1,15 @@
 #include "SpearRotation.h"
 #include "SpearRotationNode.h"
 
-SpearRotation::SpearRotation()
+SpearRotation::SpearRotation(Servo *spear)
 {
-    spear.attach(SERVO_PIN);
+    m_spear = spear;
 }
 
 void SpearRotation::begin()
 {
-    spear.attach(SERVO_PIN);
     m_gameNum = 0;
-
+    m_spear->attach(SERVO_PIN);
     SpearRotationNode *start = new SpearRotationNode(false, SERVO_POS_CENTER);
     m_fsm.setStart(start);
     if (m_gameNum == 0)
@@ -30,7 +29,8 @@ void SpearRotation::begin()
 
 bool SpearRotation::readInput(ORIENTATION top)
 {
-    updateHardware(m_fsm.stateTransition(top));
+    SpearRotationNode *curr = m_fsm.stateTransition(top);
+    // updateHardware(m_fsm.stateTransition(top));
     return m_fsm.isCompleted();
 }
 
@@ -38,7 +38,7 @@ void SpearRotation::updateHardware(SpearRotationNode *curr)
 {
     Serial.print("UPDATING TO: ");
     Serial.println(curr->getSPos());
-    spear.write(curr->getSPos());
+    // m_spear->write(curr->getSPos());
 }
 
 void SpearRotation::setGame0(SpearRotationNode *start)

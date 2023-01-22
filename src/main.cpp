@@ -6,10 +6,10 @@
 
 using namespace std;
 
-#define CODE_LENGTH 4
 #include <accel.h>
 #include <spear.h>
 #include <Servo.h>
+#include "modules/SpearRotation/SpearRotation.h"
 #define SUBMIT_BUTTON 5
 
 // bool prev_button_state = false;
@@ -17,35 +17,46 @@ using namespace std;
 // Servo spear;
 // Adafruit_MPU6050 mpu;
 // accel accelerometer(&mpu);
+Servo spear;
+
+SpearRotation spearGame = SpearRotation(&spear);
+Adafruit_MPU6050 mpu;
+accel acc(&mpu);
 void setup()
 {
   // put your setup code here, to run once:
   Serial.begin(115200);
   delay(2000);
 
-  SymbolSequence symbolSequenceModule;
-  symbolSequenceModule.begin();
-  Serial.println("LED 0 should be on");
-  delay(2000);
-  symbolSequenceModule.readInput(0);
-  Serial.println("LED 1 should be on");
-  delay(2000);
-  symbolSequenceModule.readInput(0);
-  Serial.println("LED 0 should be on");
-  delay(2000);
-  symbolSequenceModule.readInput(1);
-  Serial.println("BOTH should be on");
-  delay(2000);
-  symbolSequenceModule.readInput(2);
-  Serial.println("LED 0 should be on");
+  // SymbolSequence symbolSequenceModule;
+  // symbolSequenceModule.begin();
+  // Serial.println("LED 0 should be on");
+  // delay(2000);
+  // symbolSequenceModule.readInput(0);
+  // Serial.println("LED 1 should be on");
+  // delay(2000);
+  // symbolSequenceModule.readInput(0);
+  // Serial.println("LED 0 should be on");
+  // delay(2000);
+  // symbolSequenceModule.readInput(1);
+  // Serial.println("BOTH should be on");
+  // delay(2000);
+  // symbolSequenceModule.readInput(2);
+  // Serial.println("LED 0 should be on");
   //  accelerometer.init();
 
-  // pinMode(SUBMIT_BUTTON, INPUT);
+  pinMode(SUBMIT_BUTTON, INPUT);
   // spear.attach(SERVO_PIN);
 }
 
 void loop()
 {
+  if (digitalRead(SUBMIT_BUTTON) == LOW)
+  {
+    spearGame.readInput(SPEAR);
+    Serial.println("Pressed");
+    delay(1000);
+  }
   // if (digitalRead(SUBMIT_BUTTON) && !prev_button_state) {
   //   Serial.println("button pressed");
   //   prev_button_state = true;

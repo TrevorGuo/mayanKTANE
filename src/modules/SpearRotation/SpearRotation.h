@@ -10,19 +10,10 @@
 #include <Servo.h>
 #include "spear.h"
 
-enum ACTIONS
-{
-    CORRECT,
-    TWO,
-    THREE
-};
-
-Servo spear;
-
 class SpearRotation
 {
 public:
-    SpearRotation();
+    SpearRotation(Servo *spear);
     void begin();
     bool readInput(int action);
     void updateHardware(SpearRotationNode *curr);
@@ -35,6 +26,7 @@ private:
     void setGame0(SpearRotationNode *start);
     void setGame1(SpearRotationNode *start);
     void setGame2(SpearRotationNode *start);
+    Servo *m_spear;
 };
 
 #endif
