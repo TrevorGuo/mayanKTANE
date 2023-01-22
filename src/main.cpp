@@ -2,7 +2,8 @@
 #include <stdio.h>
 #include <iostream>
 
-#include "modules/SymbolSequence/SymbolSequence.h"
+#include "modules/SymbolSequence.h"
+#include "bomb.h"
 
 using namespace std;
 
@@ -20,24 +21,13 @@ using namespace std;
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
-  delay(2000);
-
-  SymbolSequence symbolSequenceModule;
-  symbolSequenceModule.begin();
-  Serial.println("LED 0 should be on");
-  delay(2000);
-  symbolSequenceModule.readInput(0);
-  Serial.println("LED 1 should be on");
-  delay(2000);
-  symbolSequenceModule.readInput(0);
-  Serial.println("LED 0 should be on");
-  delay(2000);
-  symbolSequenceModule.readInput(1);
-  Serial.println("BOTH should be on");
-  delay(2000);
-  symbolSequenceModule.readInput(2);
-  Serial.println("LED 0 should be on");
   //  accelerometer.init();
+
+  Bomb b;
+
+  //Attach interrupts
+
+  //Helper class for buttons 
 
   // pinMode(SUBMIT_BUTTON, INPUT);
   // spear.attach(SERVO_PIN);
