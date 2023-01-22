@@ -17,7 +17,8 @@ using namespace std;
 // Servo spear;
 // Adafruit_MPU6050 mpu;
 // accel accelerometer(&mpu);
-void setup() {
+void setup()
+{
   // put your setup code here, to run once:
   Serial.begin(115200);
   delay(2000);
@@ -43,7 +44,8 @@ void setup() {
   // spear.attach(SERVO_PIN);
 }
 
-void loop() {
+void loop()
+{
   // if (digitalRead(SUBMIT_BUTTON) && !prev_button_state) {
   //   Serial.println("button pressed");
   //   prev_button_state = true;
