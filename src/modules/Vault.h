@@ -24,13 +24,13 @@ class Vault {
         void initializeCombo();
         void comboSuccess();
         void comboFail();
-        void calcFinalNumeral();
+        void calcFinalRegion();
         void StartBuzz();
         void StopBuzz();
 
         int m_regions[CODE_LENGTH];
         int m_ordered_regions[CODE_LENGTH];
-        int m_final_numeral;
+        int m_final_region;
         int m_potentiometerValue;
         int m_region;
         bool clockActive;
