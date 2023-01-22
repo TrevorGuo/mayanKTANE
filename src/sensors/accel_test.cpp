@@ -7,7 +7,6 @@
 //   Serial.begin(115200);
 //   accelerometer.init();
 
-
 // void loop() {
 //   accelerometer.update();
 //   Serial.print(accelerometer.get_x());

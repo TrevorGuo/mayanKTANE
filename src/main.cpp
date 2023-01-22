@@ -11,6 +11,7 @@
 #include <spear.h>
 #include <Servo.h>
 #include <Adafruit_NeoPixel.h>
+#include "modules/SpearRotation/SpearRotation.h"
 
 using namespace std;
 
@@ -101,7 +102,15 @@ void button5ISR() {
 // Servo spear;
 // Adafruit_MPU6050 mpu;
 // accel accelerometer(&mpu);
-void setup() {
+Servo spear;
+
+SpearRotation spearGame = SpearRotation(&spear);
+Adafruit_MPU6050 mpu;
+accel acc(&mpu);
+int prev_button = HIGH;
+
+void setup()
+{
   // put your setup code here, to run once:
   Serial.begin(115200);
   Serial.println("Starting!");
@@ -120,8 +129,28 @@ void setup() {
   pinMode(BUTTON_5, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(BUTTON_5), button5ISR, FALLING);
   //Helper class for buttons 
+  delay(2000);
+  Serial.println("start");
+  spearGame.begin();
+  acc.init();
+  // SymbolSequence symbolSequenceModule;
+  // symbolSequenceModule.begin();
+  // Serial.println("LED 0 should be on");
+  // delay(2000);
+  // symbolSequenceModule.readInput(0);
+  // Serial.println("LED 1 should be on");
+  // delay(2000);
+  // symbolSequenceModule.readInput(0);
+  // Serial.println("LED 0 should be on");
+  // delay(2000);
+  // symbolSequenceModule.readInput(1);
+  // Serial.println("BOTH should be on");
+  // delay(2000);
+  // symbolSequenceModule.readInput(2);
+  // Serial.println("LED 0 should be on");
+  //  accelerometer.init();
 
-  // pinMode(SUBMIT_BUTTON, INPUT);
+  pinMode(SERVO_BUTTON, INPUT);
   // spear.attach(SERVO_PIN);
   pinMode(LED_0, OUTPUT);
   pinMode(LED_1, OUTPUT);
@@ -131,12 +160,83 @@ void setup() {
   pinMode(LED_5, OUTPUT);
 }
 
-void loop() {
-    // Serial.print(digitalRead(BUTTON_0));
-    // Serial.print(digitalRead(BUTTON_1));
-    // Serial.print(digitalRead(BUTTON_2));
-    // Serial.print(digitalRead(BUTTON_3));
-    // Serial.print(digitalRead(BUTTON_4));
-    // Serial.println(digitalRead(BUTTON_5));
-    delay(100);
+// int thing = 0;
+
+bool finished = false;
+
+void loop()
+{
+  // Serial.println("bing chillin");
+  // delay(99);
+  if (!finished) {
+    int curr_butt = digitalRead(SERVO_BUTTON);
+    if (curr_butt == LOW && prev_button == HIGH)
+    {
+        // thing = (thing + 1) % 180;
+        // spear.write(thing);
+        acc.update();
+
+        ORIENTATION pos = acc.get_orientation();
+
+        finished = spearGame.readInput(pos);
+
+        // Serial.println      "Pressed");
+    }
+    prev_button = curr_butt;
+  }
+  delay(100);
+  // if (digitalRead(SUBMIT_BUTTON) && !prev_button_state) {
+  //   Serial.println("button pressed");
+  //   prev_button_state = true;
+  //   accelerometer.update();
+  //   if (state == 0) {
+  //     if (accelerometer.get_orientation() == SIDE_3) {
+  //       state = 1;
+  //     }
+  //     else {
+  //       state = 0;
+  //     }
+  //     Serial.print("new state: ");
+  //     Serial.println(state);
+  //   }
+  //   else if (state == 1) {
+  //     if (accelerometer.get_orientation() == SIDE_1) {
+  //       state = 2;
+  //     }
+  //     else {
+  //       state = 0;
+  //     }
+  //     Serial.print("new state: ");
+  //     Serial.println(state);
+  //   }
+  //   else if (state == 2) {
+  //     if (accelerometer.get_orientation() == SIDE_4) {
+  //       state = 3;
+  //       Serial.println("you win");
+  //     }
+  //     else {
+  //       state = 0;
+  //     }
+  //     Serial.print("new state: ");
+  //     Serial.println(state);
+  //   }
+  //   else if (state == 3) {
+  //     Serial.println("restarting");
+  //     state = 0;
+  //   }
+  // }
+  // if (!digitalRead(SUBMIT_BUTTON) && prev_button_state) {
+  //   Serial.println("button unpressed");
+  //   prev_button_state = false;
+  // }
+
+  // if (state == 1) {
+  //   spear.write(SERVO_POS_CENTER);
+  // }
+  // else if (state == 2) {
+  //   spear.write(SERVO_POS_LEFT);
+  // }
+  // else {
+  //   spear.write(SERVO_POS_RIGHT);
+  // }
 }
