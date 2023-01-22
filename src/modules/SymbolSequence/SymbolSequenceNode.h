@@ -1,11 +1,12 @@
 #ifndef SYMBOL_SEQUENCE_NODE_H
 #define SYMBOL_SEQUENCE_NODE_H
-
-#include "Node.h"
 #include "led.h"
 #include "Arduino.h"
+#include <unordered_map>
 
 #define SEQUENCE_LENGTH 4
+
+using namespace std;
 
 class SymbolSequenceNode{
     public:
