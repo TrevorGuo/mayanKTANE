@@ -3,18 +3,22 @@
 
 #include "utils.h"
 #include "./modules/SymbolSequence.h"
+#include "ring.h"
 
 class SymbolSequence;
 
 class Bomb {
     public:
-        Bomb();
+        Bomb(ring* cal);
 
         int getStrike() {return m_strikes;};
         int getSeason() {return m_season;};
 
+        SymbolSequence* getSymbolModule() {return m_symbolSequenceModule;};
+
         void strike() {m_strikes++; if (m_strikes == 3) explode();};
         //void complete() {m_modulesCompleted++; if (m_modulesCompleted == 3) win();};
+        void completeModule(int moduleNum);
 
     private:
         //Helper Functions
@@ -29,6 +33,7 @@ class Bomb {
 
         //Modules
         SymbolSequence* m_symbolSequenceModule;
+        ring* m_cal;
 
         //Timer class - Dom
 };

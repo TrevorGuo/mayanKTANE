@@ -3,6 +3,8 @@
 
 #include "led.h"
 #include "../bomb.h"
+#include "utils.h"
+#include <Arduino.h>
 
 #define NUM_SYMBOLS 6
 
@@ -11,10 +13,8 @@ class Bomb;
 class SymbolSequence{
     public:
         SymbolSequence(Bomb* b);
-        void begin();
-        bool readInput(int button_in);
-        //void updateHardware(SymbolSequenceNode* curr);
 
+        void readInput(int button_in);
         bool check(int button_in);
         void reset();
 
