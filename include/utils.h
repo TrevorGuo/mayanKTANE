@@ -21,8 +21,14 @@
 #define LED_4 12
 #define LED_5 27
 
+#define SOUND_RX 16
+#define SOUND_TX 17
+#define SOUND_RST 3
+
 //Generates a random number between a and b
 int randInt(int a, int b);
 
+//Enumeration for
+enum MODULES {DIAL, BUTTONS, SPEAR};
 
 #endif

@@ -30,7 +30,23 @@ class Bomb {
         //Modules
         SymbolSequence* m_symbolSequenceModule;
 
+
+        //Dom's classes
         //Timer class - Dom
+
+        //Sound class - Dom
+
+        //LED class - Dom
+
+        //Button class - Dom
+
+        //Accelerometer class - Dom
+
+        //Spear class - Dom
+
+        //Dial class - Dom
+
+        //Serial class - Dom
 };
 
 #endif
