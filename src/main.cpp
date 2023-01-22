@@ -10,7 +10,9 @@ using namespace std;
 #define CODE_LENGTH 4
 #include <accel.h>
 #include <spear.h>
+#include <sound.h>
 #include <Servo.h>
+#include <HardwareSerial.h>
 #define SUBMIT_BUTTON 5
 
 // bool prev_button_state = false;
@@ -18,12 +20,19 @@ using namespace std;
 // Servo spear;
 // Adafruit_MPU6050 mpu;
 // accel accelerometer(&mpu);
+
+// ESP <-> Audio Board Serial
+HardwareSerial soundSerial(2);
 void setup() {
-  // put your setup code here, to run once:
+  // ESP <-> PC Serial
   Serial.begin(115200);
+  
+  // Create sound object
+  soundSerial.begin(9600, SERIAL_8N1, SOUND_RX, SOUND_TX);
+  sound s(&soundSerial);
   //  accelerometer.init();
 
-  Bomb b;
+  Bomb b(&s);
 
   //Attach interrupts
 

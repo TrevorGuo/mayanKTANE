@@ -2,18 +2,19 @@
 #define BOMB_H
 
 #include "utils.h"
+#include "sound.h"
 #include "./modules/SymbolSequence.h"
 
 class SymbolSequence;
 
 class Bomb {
     public:
-        Bomb();
+        Bomb(sound* s);
 
         int getStrike() {return m_strikes;};
         int getSeason() {return m_season;};
 
-        void strike() {m_strikes++; if (m_strikes == 3) explode();};
+        void strike() {m_strikes++; m_sound->playSound(0);if (m_strikes == 3) explode();};
         //void complete() {m_modulesCompleted++; if (m_modulesCompleted == 3) win();};
 
     private:
@@ -35,6 +36,7 @@ class Bomb {
         //Timer class - Dom
 
         //Sound class - Dom
+        sound* m_sound;
 
         //LED class - Dom
 
