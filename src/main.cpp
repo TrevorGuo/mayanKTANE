@@ -70,14 +70,7 @@ void loop()
 
     spearGame.readInput(pos);
 
-    Serial.println(pos);
-    Serial.print(acc.get_x());
-    Serial.print(" : ");
-    Serial.print(acc.get_y());
-    Serial.print(" : ");
-    Serial.println(acc.get_z());
-
-    Serial.println("Pressed");
+    // Serial.println      "Pressed");
   }
   prev_button = curr_butt;
   // if (digitalRead(SUBMIT_BUTTON) && !prev_button_state) {

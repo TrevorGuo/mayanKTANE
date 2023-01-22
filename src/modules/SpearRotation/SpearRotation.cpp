@@ -9,7 +9,9 @@ SpearRotation::SpearRotation(Servo *spear)
 
 void SpearRotation::begin()
 {
-    m_gameNum = 0;
+    m_gameNum = rand() % 3;
+    Serial.print("game number: ");
+    Serial.println(m_gameNum);
     m_spear->attach(SERVO_PIN);
     if (m_gameNum == 0)
     {
@@ -23,7 +25,7 @@ void SpearRotation::begin()
     {
         setGame2();
     }
-    m_spear->write(m_game[m_gameNum][0]);
+    m_spear->write(m_game[m_step][0]);
 }
 
 bool SpearRotation::readInput(ORIENTATION top)
@@ -69,18 +71,36 @@ void SpearRotation::setGame0()
 
 void SpearRotation::setGame1()
 {
-    // m_game[0] = {SERVO_POS_CENTER, SPEAR};
-    // m_game[1] = {SERVO_POS_LEFT, WEST};
-    // m_game[2] = {SERVO_POS_CENTER, BOTTOM};
-    // m_game[3] = {SERVO_POS_RIGHT, NORTH};
-    // m_game[4] = {SERVO_POS_CENTER, -1};
+    m_game[0][0] = SERVO_POS_CENTER;
+    m_game[0][1] = SPEAR;
+
+    m_game[1][0] = SERVO_POS_LEFT;
+    m_game[1][1] = WEST;
+
+    m_game[2][0] = SERVO_POS_CENTER;
+    m_game[2][1] = BOTTOM;
+
+    m_game[3][0] = SERVO_POS_LEFT;
+    m_game[3][1] = NORTH;
+
+    m_game[4][0] = SERVO_POS_CENTER;
+    m_game[4][1] = -1;
 }
 
 void SpearRotation::setGame2()
 {
-    // m_game[0] = {SERVO_POS_CENTER, SPEAR};
-    // m_game[1] = {SERVO_POS_RIGHT, EAST};
-    // m_game[2] = {SERVO_POS_LEFT, EAST};
-    // m_game[3] = {SERVO_POS_RIGHT, BOTTOM};
-    // m_game[4] = {SERVO_POS_CENTER, -1};
+    m_game[0][0] = SERVO_POS_CENTER;
+    m_game[0][1] = SPEAR;
+
+    m_game[1][0] = SERVO_POS_RIGHT;
+    m_game[1][1] = EAST;
+
+    m_game[2][0] = SERVO_POS_LEFT;
+    m_game[2][1] = EAST;
+
+    m_game[3][0] = SERVO_POS_RIGHT;
+    m_game[3][1] = BOTTOM;
+
+    m_game[4][0] = SERVO_POS_CENTER;
+    m_game[4][1] = -1;
 }

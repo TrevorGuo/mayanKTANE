@@ -1,6 +1,7 @@
 #ifndef SPEARROTATION_H
 #define SPEARROTATION_H
 #include "Arduino.h"
+#include <stdlib.h>
 
 #include "SpearRotationNode.h"
 #include "SpearRotationSM.h"
