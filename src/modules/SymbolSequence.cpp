@@ -10,6 +10,7 @@ SymbolSequence::SymbolSequence(Bomb* b) {
 
     m_bomb = b;
     m_currSymbol = 0;
+    Serial.println("Constructing");
     reset();
 }
 
@@ -24,7 +25,7 @@ void SymbolSequence::readInput(int button_in) {
 
     m_leds[m_currSymbol].off();
     m_completed++;
-    if (m_completed == 1) {
+    if (m_completed == 3) {
         for (int i = 0; i < NUM_SYMBOLS; i++) {
             m_leds[i].on();
         }
@@ -59,6 +60,9 @@ bool SymbolSequence::check(int button_in) {
             if (m_prevSymbol >= 3) {
                 return m_prevSymbol == button_in;
             }
+            else {
+                return 4 == button_in;
+            }
         case 2:
             if (m_bomb->getSeason() == 1) {
                 return 2 == button_in;
@@ -72,6 +76,9 @@ bool SymbolSequence::check(int button_in) {
             }
             if (m_pressed[1]) {
                 return 2 == button_in;
+            }
+            else {
+                return 3 == button_in;
             }
         case 4:
             if (m_bomb->getSeason() == 2) {
@@ -94,13 +101,22 @@ bool SymbolSequence::check(int button_in) {
 }
 
 void SymbolSequence::reset() {
+    Serial.println("1");
     m_leds[m_currSymbol].off();
+    Serial.println("2");
+    
     m_currSymbol = randInt(0, NUM_SYMBOLS - 1);
+    Serial.println("3");
     m_completed = 0;
+    Serial.println("4");
     m_leds[m_currSymbol].on();
+    Serial.println("5");
     m_prevSymbol = -1;
     // for (int i = 0; i < NUM_SYMBOLS; i++) {
     //     m_pressed[i] = false;
     // }
+    Serial.println("6");
     m_startSeason = -1;
+    Serial.print("Current symbol: ");
+    Serial.println(m_currSymbol);
 }

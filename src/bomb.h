@@ -9,13 +9,13 @@ class SymbolSequence;
 
 class Bomb {
     public:
-        Bomb(ring* cal);
+        Bomb();
 
         int getStrike() {return m_strikes;};
         int getSeason() {return m_season;};
 
         SymbolSequence* getSymbolModule() {return m_symbolSequenceModule;};
-        ring* getClock() {return m_cal;};
+        // ring* getClock() {return m_cal;};
 
         void strike() {m_strikes++; if (m_strikes == 3) explode();};
         //void complete() {m_modulesCompleted++; if (m_modulesCompleted == 3) win();};
@@ -34,7 +34,6 @@ class Bomb {
 
         //Modules
         SymbolSequence* m_symbolSequenceModule;
-        ring* m_cal;
 
         //Timer class - Dom
 };

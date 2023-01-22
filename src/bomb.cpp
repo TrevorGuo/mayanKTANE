@@ -1,8 +1,9 @@
 #include "bomb.h"
 
-Bomb::Bomb(ring* cal) {
+Bomb::Bomb() {
+    Serial.println("Constructing b");
+
     m_symbolSequenceModule = new SymbolSequence(this);
-    m_cal = cal;
 }
 
 void Bomb::explode() {
@@ -10,7 +11,6 @@ void Bomb::explode() {
 }
 
 void Bomb::win(){
-    m_cal->updateQuadrant(NUM_MODULES - 1, true);
 }
 
 void Bomb::completeModule(int moduleNum) {

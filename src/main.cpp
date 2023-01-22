@@ -14,9 +14,9 @@
 
 using namespace std;
 
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(24, NEOPIXEL_PIN, NEO_RGBW + NEO_KHZ800);
-ring* calendar = new ring(&strip);
-Bomb b(calendar);
+// Adafruit_NeoPixel strip = Adafruit_NeoPixel(24, NEOPIXEL_PIN, NEO_RGBW + NEO_KHZ800);
+// ring* calendar = new ring(&strip);
+Bomb b;
 
 void button0ISR() {
     static int buttonNum = 0;
@@ -104,16 +104,7 @@ void button5ISR() {
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(115200);
-  //  accelerometer.init();
-
-  strip.begin();
-  Serial.println("dom");
-  strip.setBrightness(20);
-  Serial.println("k");
-  strip.fill(strip.Color(255, 0, 60), 10-10, 18 + 5);
-  strip.show(); // Initialize all pixels to 'off'
-  Serial.println("olson");
-
+  Serial.println("Starting!");
 
   //Attach interrupts
   pinMode(BUTTON_0, INPUT_PULLUP);
@@ -141,99 +132,11 @@ void setup() {
 }
 
 void loop() {
-  // Serial.print(digitalRead(BUTTON_0));
-  // Serial.print(digitalRead(BUTTON_1));
-  // Serial.print(digitalRead(BUTTON_2));
-  // Serial.print(digitalRead(BUTTON_3));
-  // Serial.print(digitalRead(BUTTON_4));
-  // Serial.println(digitalRead(BUTTON_5));
-//   b.getClock()->updateClock();?
-//   delay(500);
-
-
-  
-  // Serial.println(LED_0);
-  // digitalWrite(LED_0, HIGH);
-  // delay(100);
-  // Serial.println(LED_1);
-  // digitalWrite(LED_1, HIGH);
-  // delay(100);
-  // Serial.println(LED_2);
-  // digitalWrite(LED_2, HIGH);
-  // delay(100);
-  // Serial.println(LED_3);
-  // digitalWrite(LED_3, HIGH);
-  // delay(100);
-  // Serial.println(LED_4);
-  // digitalWrite(LED_4, HIGH);
-  // delay(100);
-  // Serial.println(LED_5);
-  // digitalWrite(LED_5, HIGH);
-  // delay(100);
-  // digitalWrite(LED_0, LOW);
-  // delay(100);
-  // digitalWrite(LED_1, LOW);
-  // delay(100);
-  // digitalWrite(LED_2, LOW);
-  // delay(100);
-  // digitalWrite(LED_3, LOW);
-  // delay(100);
-  // digitalWrite(LED_4, LOW);
-  // delay(100);
-  // digitalWrite(LED_5, LOW);
-  // delay(100);
-  // if (digitalRead(SUBMIT_BUTTON) && !prev_button_state) {
-  //   Serial.println("button pressed");
-  //   prev_button_state = true;
-  //   accelerometer.update();
-  //   if (state == 0) {
-  //     if (accelerometer.get_orientation() == SIDE_3) {
-  //       state = 1;
-  //     }
-  //     else {
-  //       state = 0;
-  //     }
-  //     Serial.print("new state: ");
-  //     Serial.println(state);
-  //   }
-  //   else if (state == 1) {
-  //     if (accelerometer.get_orientation() == SIDE_1) {
-  //       state = 2;
-  //     }
-  //     else {
-  //       state = 0;
-  //     }
-  //     Serial.print("new state: ");
-  //     Serial.println(state);
-  //   }
-  //   else if (state == 2) {
-  //     if (accelerometer.get_orientation() == SIDE_4) {
-  //       state = 3;
-  //       Serial.println("you win");
-  //     }
-  //     else {
-  //       state = 0;
-  //     }
-  //     Serial.print("new state: ");
-  //     Serial.println(state);
-  //   }
-  //   else if (state == 3) {
-  //     Serial.println("restarting");
-  //     state = 0;
-  //   }
-  // }
-  // if (!digitalRead(SUBMIT_BUTTON) && prev_button_state) {
-  //   Serial.println("button unpressed");
-  //   prev_button_state = false;
-  // }
-
-  // if (state == 1) {
-  //   spear.write(SERVO_POS_CENTER);
-  // }
-  // else if (state == 2) {
-  //   spear.write(SERVO_POS_LEFT);
-  // }
-  // else {
-  //   spear.write(SERVO_POS_RIGHT);
-  // }
+    // Serial.print(digitalRead(BUTTON_0));
+    // Serial.print(digitalRead(BUTTON_1));
+    // Serial.print(digitalRead(BUTTON_2));
+    // Serial.print(digitalRead(BUTTON_3));
+    // Serial.print(digitalRead(BUTTON_4));
+    // Serial.println(digitalRead(BUTTON_5));
+    delay(100);
 }
