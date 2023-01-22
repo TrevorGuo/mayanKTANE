@@ -15,6 +15,7 @@ class Bomb {
         int getSeason() {return m_season;};
 
         SymbolSequence* getSymbolModule() {return m_symbolSequenceModule;};
+        ring* getClock() {return m_cal;};
 
         void strike() {m_strikes++; if (m_strikes == 3) explode();};
         //void complete() {m_modulesCompleted++; if (m_modulesCompleted == 3) win();};

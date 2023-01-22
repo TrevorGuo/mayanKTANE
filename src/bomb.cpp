@@ -15,7 +15,6 @@ void Bomb::win(){
 
 void Bomb::completeModule(int moduleNum) {
     m_completed[moduleNum] = true;
-    m_cal->updateQuadrant(moduleNum, true);
     for (int i = 0; i < NUM_MODULES; i++) {
         if (!m_completed[i]) {
             return;

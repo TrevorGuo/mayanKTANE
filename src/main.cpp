@@ -14,8 +14,8 @@
 
 using namespace std;
 
-
-ring* calendar = new ring();
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(24, NEOPIXEL_PIN, NEO_RGBW + NEO_KHZ800);
+ring* calendar = new ring(&strip);
 Bomb b(calendar);
 
 void button0ISR() {
@@ -147,7 +147,9 @@ void loop() {
   // Serial.print(digitalRead(BUTTON_3));
   // Serial.print(digitalRead(BUTTON_4));
   // Serial.println(digitalRead(BUTTON_5));
-  delay(100);
+//   b.getClock()->updateClock();?
+//   delay(500);
+
 
   
   // Serial.println(LED_0);
