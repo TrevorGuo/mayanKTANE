@@ -1,3 +1,6 @@
+#ifndef LED_H
+#define LED_H
+
 // may need to reallocate these.
 #define LED_0 13
 #define LED_1 12
@@ -16,6 +19,7 @@
 
 class led {
     public:
+    led();
     led(int pin);
     void on();
     void off();
@@ -23,3 +27,5 @@ class led {
     private:
     int m_pin;
 };
+
+#endif
