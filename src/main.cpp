@@ -22,12 +22,16 @@ Servo spear;
 SpearRotation spearGame = SpearRotation(&spear);
 Adafruit_MPU6050 mpu;
 accel acc(&mpu);
+int prev_button = HIGH;
+
 void setup()
 {
   // put your setup code here, to run once:
   Serial.begin(115200);
   delay(2000);
-
+  Serial.println("start");
+  spearGame.begin();
+  acc.init();
   // SymbolSequence symbolSequenceModule;
   // symbolSequenceModule.begin();
   // Serial.println("LED 0 should be on");
@@ -49,14 +53,33 @@ void setup()
   // spear.attach(SERVO_PIN);
 }
 
+// int thing = 0;
+
 void loop()
 {
-  if (digitalRead(SUBMIT_BUTTON) == LOW)
+  // Serial.println("bing chillin");
+  // delay(99);
+  int curr_butt = digitalRead(SUBMIT_BUTTON);
+  if (curr_butt == LOW && prev_button == HIGH)
   {
-    spearGame.readInput(SPEAR);
+    // thing = (thing + 1) % 180;
+    // spear.write(thing);
+    acc.update();
+
+    ORIENTATION pos = acc.get_orientation();
+
+    spearGame.readInput(pos);
+
+    Serial.println(pos);
+    Serial.print(acc.get_x());
+    Serial.print(" : ");
+    Serial.print(acc.get_y());
+    Serial.print(" : ");
+    Serial.println(acc.get_z());
+
     Serial.println("Pressed");
-    delay(1000);
   }
+  prev_button = curr_butt;
   // if (digitalRead(SUBMIT_BUTTON) && !prev_button_state) {
   //   Serial.println("button pressed");
   //   prev_button_state = true;

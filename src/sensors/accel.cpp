@@ -14,6 +14,7 @@ int accel::init()
         Serial.println("Failed to find MPU6050 chip");
         while (1)
         {
+            Serial.print("L");
             delay(10);
         }
     }
@@ -27,6 +28,13 @@ int accel::update()
 {
     sensors_event_t a, g, temp;
     m_mpu->getEvent(&a, &g, &temp);
+
+    // Serial.print(a.acceleration.x);
+    // Serial.print(" : ");
+    // Serial.print(a.acceleration.y);
+    // Serial.print(" : ");
+    // Serial.println(a.acceleration.z);
+
     m_x = a.acceleration.x;
     m_y = a.acceleration.y;
     m_z = a.acceleration.z;

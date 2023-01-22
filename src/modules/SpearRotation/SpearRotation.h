@@ -15,17 +15,21 @@ class SpearRotation
 public:
     SpearRotation(Servo *spear);
     void begin();
-    bool readInput(int action);
-    void updateHardware(SpearRotationNode *curr);
     bool readInput(ORIENTATION top);
+    void updateHardware();
+    bool isComplete()
+    {
+        return m_step == 4;
+    };
 
 private:
-    void constructGame(SpearRotationNode *start);
-    SpearRotationSM m_fsm;
+    int m_game[5][2];
+    int m_step = 0;
     int m_gameNum;
-    void setGame0(SpearRotationNode *start);
-    void setGame1(SpearRotationNode *start);
-    void setGame2(SpearRotationNode *start);
+    void setGame0();
+    void setGame1();
+    void setGame2();
+
     Servo *m_spear;
 };
 
