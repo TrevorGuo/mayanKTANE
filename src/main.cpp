@@ -3,16 +3,15 @@
 #include <iostream>
 
 // #include "modules/SymbolSequence.h"
-#include "bomb.h"
+// #include "bomb.h"
 
 using namespace std;
 
-#define CODE_LENGTH 4
+// #define CODE_LENGTH 4
 // #include <accel.h>
 // #include <spear.h>
 // #include <Servo.h>
-#include "Vault.h"
-#define pot 5
+#include "modules/Vault.h"
 
 // bool prev_button_state = false;
 // int state = 0;
@@ -20,16 +19,21 @@ using namespace std;
 // Adafruit_MPU6050 mpu;
 // accel accelerometer(&mpu);
 
-vault Vault;
+Vault vault;
+
 void setup()
 {
   // put your setup code here, to run once:
   Serial.begin(115200);
+  // delay(1000);
+  Serial.println("Starting");
   //  accelerometer.init();
 
-  // Bomb b;
   pinMode(POTPIN, OUTPUT);
-  // vault = Vault();
+  vault = Vault();
+  vault.initializeCombo();
+  pinMode(VIBS_PIN, OUTPUT);
+
   // Attach interrupts
 
   // Helper class for buttons
@@ -40,7 +44,8 @@ void setup()
 
 void loop()
 {
-  // vault.runVault();
+  vault.runVault();
+  delay(500);
   // if (digitalRead(SUBMIT_BUTTON) && !prev_button_state) {
   //   Serial.println("button pressed");
   //   prev_button_state = true;
