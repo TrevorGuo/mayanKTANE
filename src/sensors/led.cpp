@@ -1,5 +1,10 @@
 #include "led.h"
 #include "Arduino.h"
+
+led::led() {
+    m_pin = -1;
+}
+
 led::led(int pin) {
     m_pin = pin;
     pinMode(m_pin, OUTPUT);
