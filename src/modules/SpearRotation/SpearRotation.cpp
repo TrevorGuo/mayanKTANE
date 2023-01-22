@@ -28,17 +28,28 @@ void SpearRotation::begin()
 
 bool SpearRotation::readInput(ORIENTATION top)
 {
+    Serial.print("Step: ");
+    Serial.print(m_step);
+    Serial.print(" -> ");
     if (m_step == 4)
+    {
+        Serial.println();
         return 0;
+    }
 
     if (top == m_game[m_step][1])
         m_step += 1;
     else if (m_step == 0)
+    {
+        Serial.println();
         return 0;
+    }
     else
         m_step = 0;
 
-    m_spear->write(m_game[m_gameNum][0]);
+    Serial.println(m_step);
+
+    m_spear->write(m_game[m_step][0]);
     return m_step == 4;
 }
 

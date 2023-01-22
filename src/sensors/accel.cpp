@@ -63,12 +63,12 @@ ORIENTATION accel::get_orientation()
     if (m_z < -ACCEL_THRESH)
         return BOTTOM; // bottom
     if (m_x > ACCEL_THRESH)
-        return NORTH; // cal (North)
+        return SOUTH; // cal (North)
     if (m_x < -ACCEL_THRESH)
-        return SOUTH; // open (south)
+        return NORTH; // open (south)
     if (m_y > ACCEL_THRESH)
-        return EAST; // dial (east)
+        return WEST; // dial (east)
     if (m_y < -ACCEL_THRESH)
-        return WEST; // speaker (west)
+        return EAST; // speaker (west)
     return NONE;
 }
